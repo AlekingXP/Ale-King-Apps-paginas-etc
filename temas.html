@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="brutalist">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratorio de Estilos y Variantes Visuales // Ale King</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================================
+       RESET Y SISTEMA DE VARIABLES BASE POR TEMA
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    :root {
+      --transition-speed: 0.25s;
+    }
+
+    /* --- TEMA 1: BRUTALISTA (Default inicial) --- */
+    [data-theme="brutalist"] {
+      --bg-main: #f5f4ef;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #fffbdf;
+      --bg-nav: #f5f4ef;
+      --text-main: #0a0a0a;
+      --text-muted: #383838;
+      --accent: #ffeb3b;
+      --accent-secondary: #ff3366;
+      --border-color: #0a0a0a;
+      --border-width: 3px;
+      --border-style: solid;
+      --radius-sm: 0px;
+      --radius-md: 0px;
+      --radius-lg: 0px;
+      --radius-pill: 0px;
+      --shadow-hard: 5px 5px 0px #0a0a0a;
+      --shadow-hard-hover: 8px 8px 0px #0a0a0a;
+      --font-body: 'Space Grotesk', system-ui, sans-serif;
+      --font-heading: 'Space Mono', monospace;
+      --badge-bg: #ff3366;
+      --badge-text: #ffffff;
+      --tag-bg: #0a0a0a;
+      --tag-text: #ffffff;
+      --card-accent-border: #0a0a0a;
+    }
+
+    /* --- TEMA 2: MINIMALISTA (Elegante, espacioso, sutil) --- */
+    [data-theme="minimal"] {
+      --bg-main: #fafafa;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f4f4f5;
+      --bg-nav: rgba(250, 250, 250, 0.95);
+      --text-main: #18181b;
+      --text-muted: #71717a;
+      --accent: #18181b;
+      --accent-secondary: #52525b;
+      --border-color: #e4e4e7;
+      --border-width: 1px;
+      --border-style: solid;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-hard: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      --shadow-hard-hover: 0 10px 30px -4px rgba(0, 0, 0, 0.08);
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-heading: 'Inter', system-ui, sans-serif;
+      --badge-bg: #f4f4f5;
+      --badge-text: #18181b;
+      --tag-bg: #f4f4f5;
+      --tag-text: #52525b;
+      --card-accent-border: #e4e4e7;
+    }
+
+    /* --- TEMA 3: CYBERPUNK / NEÓN (Oscuro extremo, cian y fucsia luminoso) --- */
+    [data-theme="cyberpunk"] {
+      --bg-main: #060810;
+      --bg-surface: #0b0e1b;
+      --bg-surface-alt: #12162a;
+      --bg-nav: rgba(6, 8, 16, 0.95);
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent: #00f0ff;
+      --accent-secondary: #ff0055;
+      --border-color: #00f0ff;
+      --border-width: 1.5px;
+      --border-style: solid;
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --radius-lg: 8px;
+      --radius-pill: 4px;
+      --shadow-hard: 0 0 18px rgba(0, 240, 255, 0.28), 3px 3px 0 #ff0055;
+      --shadow-hard-hover: 0 0 28px rgba(0, 240, 255, 0.45), 5px 5px 0 #ff0055;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-heading: 'Space Mono', monospace;
+      --badge-bg: rgba(255, 0, 85, 0.2);
+      --badge-text: #ff5588;
+      --tag-bg: rgba(0, 240, 255, 0.15);
+      --tag-text: #00f0ff;
+      --card-accent-border: #00f0ff;
+    }
+
+    /* --- TEMA 4: EDITORIAL / CLÁSICO (Pergamino noble, tipografía serif) --- */
+    [data-theme="editorial"] {
+      --bg-main: #fbf8f2;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f4eee2;
+      --bg-nav: rgba(251, 248, 242, 0.96);
+      --text-main: #24211d;
+      --text-muted: #6e675d;
+      --accent: #8b5a2b;
+      --accent-secondary: #c59b27;
+      --border-color: #d8cebe;
+      --border-width: 1px;
+      --border-style: solid;
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+      --radius-pill: 20px;
+      --shadow-hard: 0 8px 24px rgba(60, 50, 35, 0.08);
+      --shadow-hard-hover: 0 14px 32px rgba(60, 50, 35, 0.14);
+      --font-body: 'Inter', Georgia, serif;
+      --font-heading: 'Cinzel', Georgia, serif;
+      --badge-bg: #8b5a2b;
+      --badge-text: #ffffff;
+      --tag-bg: #f4eee2;
+      --tag-text: #594f43;
+      --card-accent-border: #c59b27;
+    }
+
+    /* --- TEMA 5: PLAYFUL / CREATIVO (Pastel lila, bordes ultra redondeados, dinamismo) --- */
+    [data-theme="playful"] {
+      --bg-main: #f5f3ff;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #ede9fe;
+      --bg-nav: rgba(245, 243, 255, 0.95);
+      --text-main: #2e1065;
+      --text-muted: #6b21a8;
+      --accent: #7c3aed;
+      --accent-secondary: #f43f5e;
+      --border-color: #ddd6fe;
+      --border-width: 2px;
+      --border-style: solid;
+      --radius-sm: 14px;
+      --radius-md: 22px;
+      --radius-lg: 32px;
+      --radius-pill: 9999px;
+      --shadow-hard: 0 12px 30px rgba(124, 58, 237, 0.12), 0 4px 10px rgba(244, 63, 94, 0.08);
+      --shadow-hard-hover: 0 18px 36px rgba(124, 58, 237, 0.22);
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --badge-bg: #f43f5e;
+      --badge-text: #ffffff;
+      --tag-bg: #ede9fe;
+      --tag-text: #7c3aed;
+      --card-accent-border: #c4b5fd;
+    }
+
+    /* ==========================================================================
+       ESTILOS GLOBALES DE LA PÁGINA
+       ========================================================================== */
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding-top: 86px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (100% LEGIBLE EN TODOS LOS TEMAS)
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--bg-nav);
+      backdrop-filter: blur(12px);
+      border-bottom: var(--border-width) var(--border-style) var(--border-color);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+      padding: 0 1.5rem;
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: var(--text-main);
+      color: var(--bg-main);
+      border-radius: var(--radius-sm);
+      font-weight: 900;
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--accent);
+      color: var(--bg-main);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-pill);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      cursor: pointer;
+      box-shadow: var(--shadow-hard);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    [data-theme="brutalist"] .nav-cta-btn {
+      color: #000;
+    }
+    [data-theme="minimal"] .nav-cta-btn {
+      color: #fff;
+    }
+    [data-theme="cyberpunk"] .nav-cta-btn {
+      color: #060810;
+    }
+    [data-theme="editorial"] .nav-cta-btn {
+      color: #fff;
+    }
+    [data-theme="playful"] .nav-cta-btn {
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       HEADER Y SELECTOR FLOTANTE DE TEMAS
+       ========================================================================== */
+    .page-header {
+      padding: 3.5rem 0 2rem;
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-color);
+    }
+
+    .header-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .header-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Barra de botones de control de tema */
+    .theme-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+      background-color: var(--bg-surface);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-lg);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      box-shadow: var(--shadow-hard);
+      max-width: 880px;
+      margin: 0 auto 3rem;
+    }
+
+    .theme-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: var(--bg-surface-alt);
+      color: var(--text-main);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .theme-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hard);
+    }
+
+    .theme-chip.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-hard);
+    }
+
+    [data-theme="cyberpunk"] .theme-chip.active {
+      color: #060810;
+    }
+    [data-theme="minimal"] .theme-chip.active {
+      color: #ffffff;
+    }
+    [data-theme="editorial"] .theme-chip.active {
+      color: #ffffff;
+    }
+    [data-theme="playful"] .theme-chip.active {
+      color: #ffffff;
+    }
+
+    .chip-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       DEMO INTERACTIVA EN VIVO (SANDBOX HERO & CARDS)
+       ========================================================================== */
+    .demo-sandbox {
+      background: var(--bg-surface);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-hard);
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .demo-tag {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .demo-current-theme {
+      font-weight: 800;
+      color: var(--text-main);
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+    }
+
+    .hero-sandbox-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 868px) {
+      .hero-sandbox-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.8rem;
+      background-color: var(--accent);
+      color: #000;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-pill);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      cursor: pointer;
+      box-shadow: var(--shadow-hard);
+    }
+
+    [data-theme="minimal"] .btn-primary, 
+    [data-theme="editorial"] .btn-primary,
+    [data-theme="playful"] .btn-primary {
+      color: #fff;
+    }
+    [data-theme="cyberpunk"] .btn-primary {
+      color: #060810;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.8rem;
+      background-color: transparent;
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-pill);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-surface-alt);
+    }
+
+    /* Panel visual derecho */
+    .hero-interactive-card {
+      background: var(--bg-surface-alt);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-hard);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-box {
+      background: var(--bg-surface);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      color: var(--text-main);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .interactive-input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .interactive-input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      background: var(--bg-surface);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      outline: none;
+    }
+
+    .interactive-input:focus {
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    /* ==========================================================================
+       CATÁLOGO DETALLADO DE VARIANTES (TARJETAS INFORMATIVAS)
+       ========================================================================== */
+    .section-title-wrap {
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+    }
+
+    .themes-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .theme-card {
+      background: var(--bg-surface);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-hard);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .theme-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .theme-pill {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+
+    .theme-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .theme-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .theme-card-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .theme-card-features li {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .feature-check {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .btn-apply-theme {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: var(--radius-pill);
+      border: var(--border-width) var(--border-style) var(--border-color);
+      background: var(--bg-surface-alt);
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .btn-apply-theme:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: var(--shadow-hard);
+    }
+
+    [data-theme="minimal"] .btn-apply-theme:hover,
+    [data-theme="editorial"] .btn-apply-theme:hover,
+    [data-theme="playful"] .btn-apply-theme:hover {
+      color: #fff;
+    }
+    [data-theme="cyberpunk"] .btn-apply-theme:hover {
+      color: #060810;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      border-top: var(--border-width) var(--border-style) var(--border-color);
+      padding: 2.5rem 0;
+      text-align: center;
+      background: var(--bg-surface);
+      margin-top: 4rem;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      color: var(--text-main);
+    }
+
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR SUPERIOR SIEMPRE LEGIBLE -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">AK</span>
+        <span>Ale King</span>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-link">← Volver al Portafolio</a>
+        <a href="index.html#contacto" class="nav-cta-btn">Contratar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- CABECERA PRINCIPAL -->
+    <section class="page-header">
+      <span class="header-badge">Interactive Design Engine</span>
+      <h1 class="header-title">Laboratorio de Estilos & Variantes</h1>
+      <p class="header-subtitle">
+        Experimenta cómo se transforma la arquitectura visual completa con un solo clic. Cada estilo posee su propia identidad tipográfica, ritmo y energía de diseño.
+      </p>
+
+      <!-- SELECTOR DINÁMICO DE TEMAS -->
+      <div class="theme-toolbar" role="toolbar" aria-label="Selección de estilos">
+        <button class="theme-chip active" data-set-theme="brutalist" type="button">
+          <span class="chip-dot" style="background: #ffeb3b; border: 1px solid #000;"></span>
+          Brutalista
+        </button>
+        <button class="theme-chip" data-set-theme="minimal" type="button">
+          <span class="chip-dot" style="background: #18181b;"></span>
+          Minimalista
+        </button>
+        <button class="theme-chip" data-set-theme="cyberpunk" type="button">
+          <span class="chip-dot" style="background: #00f0ff;"></span>
+          Cyberpunk Neón
+        </button>
+        <button class="theme-chip" data-set-theme="editorial" type="button">
+          <span class="chip-dot" style="background: #8b5a2b;"></span>
+          Editorial Clásico
+        </button>
+        <button class="theme-chip" data-set-theme="playful" type="button">
+          <span class="chip-dot" style="background: #7c3aed;"></span>
+          Playful Creativo
+        </button>
+      </div>
+    </section>
+
+    <!-- SANDBOX HERO DEMO EN TIEMPO REAL -->
+    <section class="demo-sandbox">
+      <div class="demo-label">
+        <span class="demo-tag">Demostración Interactiva en Vivo</span>
+        <span class="demo-current-theme" id="currentThemeDisplay">Estilo Activo: BRUTALISTA</span>
+      </div>
+
+      <div class="hero-sandbox-grid">
+        <div class="hero-content">
+          <h2 id="heroTitle">Desarrollo web de impacto que desafía lo convencional.</h2>
+          <p id="heroDesc">
+            Combinación de ingeniería frontend de alta precisión con narrativas visuales atrevidas. Interfaces con actitud, rendimiento optimizado y código estructurado.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" id="testActionBtn" type="button">Ver Proyectos</button>
+            <button class="btn-secondary" id="testSecBtn" type="button">Explorar Métricas</button>
+          </div>
+        </div>
+
+        <div class="hero-interactive-card">
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-number">99.8%</div>
+              <div class="stat-label">Score Rendimiento</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">+30</div>
+              <div class="stat-label">Casos Exitosos</div>
+            </div>
+          </div>
+
+          <div class="interactive-input-group">
+            <input type="text" class="interactive-input" placeholder="Escribe una consulta rápida..." value="Solicitar cotización técnica" />
+            <button class="btn-primary" style="padding: 0.75rem 1.25rem;" type="button">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLE DE LAS 5 VARIANTES -->
+    <div class="section-title-wrap">
+      <h2 class="section-title">Colección de Direcciones de Arte</h2>
+      <p class="section-desc">Selecciona cualquiera de las variantes a continuación para aplicarla a toda la interfaz.</p>
+    </div>
+
+    <section class="themes-cards-grid">
+      <!-- CARD 1: BRUTALISTA -->
+      <article class="theme-card">
+        <div>
+          <div class="theme-card-header">
+            <span class="theme-pill">Vanguardista</span>
+            <strong>01</strong>
+          </div>
+          <h3>Neo-Brutalismo</h3>
+          <p>Contornos en negro puro, sombras duras desplazadas sin difuminar, tipografías monoespaciadas y alto impacto visual.</p>
+          <ul class="theme-card-features">
+            <li><span class="feature-check">■</span> Bordes sólidos de 3px y sombras duras</li>
+            <li><span class="feature-check">■</span> Colores de alto contraste sobre fondo crema</li>
+            <li><span class="feature-check">■</span> Personalidad rebelde y contundente</li>
+          </ul>
+        </div>
+        <button class="btn-apply-theme" data-set-theme="brutalist" type="button">Activar Neo-Brutalismo</button>
+      </article>
+
+      <!-- CARD 2: MINIMALISTA -->
+      <article class="theme-card">
+        <div>
+          <div class="theme-card-header">
+            <span class="theme-pill">Elegante</span>
+            <strong>02</strong>
+          </div>
+          <h3>Minimalismo Suizo</h3>
+          <p>Aireación precisa, tipografía grotesca y escala monocromática. Menos elementos para maximizar el foco en el contenido.</p>
+          <ul class="theme-card-features">
+            <li><span class="feature-check">■</span> Bordes delgados y sombras híper difuminadas</li>
+            <li><span class="feature-check">■</span> Tipografía sans ultra limpia y balanceada</li>
+            <li><span class="feature-check">■</span> Estética moderna, limpia y corporativa</li>
+          </ul>
+        </div>
+        <button class="btn-apply-theme" data-set-theme="minimal" type="button">Activar Minimalista</button>
+      </article>
+
+      <!-- CARD 3: CYBERPUNK -->
+      <article class="theme-card">
+        <div>
+          <div class="theme-card-header">
+            <span class="theme-pill">Futurista</span>
+            <strong>03</strong>
+          </div>
+          <h3>Cyberpunk Neón</h3>
+          <p>Profundidad oscura, acentos cian y magenta fosforescentes con resplandores luminosos y toques distópicos.</p>
+          <ul class="theme-card-features">
+            <li><span class="feature-check">■</span> Fondos oscuros con sombras lumínicas neón</li>
+            <li><span class="feature-check">■</span> Combinación dual cian eléctrico y rosa magenta</li>
+            <li><span class="feature-check">■</span> Ideal para Web3, tech y videojuegos</li>
+          </ul>
+        </div>
+        <button class="btn-apply-theme" data-set-theme="cyberpunk" type="button">Activar Cyberpunk</button>
+      </article>
+
+      <!-- CARD 4: EDITORIAL -->
+      <article class="theme-card">
+        <div>
+          <div class="theme-card-header">
+            <span class="theme-pill">Distinguido</span>
+            <strong>04</strong>
+          </div>
+          <h3>Editorial & Serif</h3>
+          <p>Inspirado en revistas de lujo, periódicos históricos y literatura noble. Fondos pergamino y tipografías con remates.</p>
+          <ul class="theme-card-features">
+            <li><span class="feature-check">■</span> Tipografía Cinzel con proporciones clásicas</li>
+            <li><span class="feature-check">■</span> Tonos ocres, dorados y marrón carbón</li>
+            <li><span class="feature-check">■</span> Perfil para consultoría premium y arquitectura</li>
+          </ul>
+        </div>
+        <button class="btn-apply-theme" data-set-theme="editorial" type="button">Activar Editorial</button>
+      </article>
+
+      <!-- CARD 5: PLAYFUL -->
+      <article class="theme-card">
+        <div>
+          <div class="theme-card-header">
+            <span class="theme-pill">Creativo</span>
+            <strong>05</strong>
+          </div>
+          <h3>Playful Dinámico</h3>
+          <p>Curvaturas infladas, paleta alegre lila y coral con energía lúdica y moderna para productos digitales frescos.</p>
+          <ul class="theme-card-features">
+            <li><span class="feature-check">■</span> Bordes generosamente redondeados (pill & 24px)</li>
+            <li><span class="feature-check">■</span> Gradientes amigables y sombras suaves</li>
+            <li><span class="feature-check">■</span> Ideal para SaaS modernos y marcas creativas</li>
+          </ul>
+        </div>
+        <button class="btn-apply-theme" data-set-theme="playful" type="button">Activar Playful</button>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-brand">Ale King // Laboratorio de Ingeniería Creativa & Sistemas Interactivos</p>
+      <div class="footer-links">
+        <a href="mailto:a9lessxz@gmail.com">a9lessxz@gmail.com</a>
+        <a href="https://github.com/AlekingXP" target="_blank" rel="noopener noreferrer">github.com/AlekingXP</a>
+      </div>
+      <p>© 2025 Ale King. Sistema de Temas Dinámico. Explora el código limpio y versátil.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const themeButtons = document.querySelectorAll('[data-set-theme]');
+      const currentThemeDisplay = document.getElementById('currentThemeDisplay');
+      const heroTitle = document.getElementById('heroTitle');
+      const heroDesc = document.getElementById('heroDesc');
+      const root = document.documentElement;
+
+      const themeTexts = {
+        brutalist: {
+          name: 'NEO-BRUTALISMO',
+          title: 'Desarrollo web de impacto que desafía lo convencional.',
+          desc: 'Combinación de ingeniería frontend de alta precisión con narrativas visuales atrevidas. Interfaces con actitud, bordes rígidos y cero sutilezas.'
+        },
+        minimal: {
+          name: 'MINIMALISMO SUIZO',
+          title: 'Simplicidad esencial, legibilidad absoluta.',
+          desc: 'Espacio negativo calculado, jerarquía sin ruido y una experiencia de usuario impecable centrada 100% en el mensaje.'
+        },
+        cyberpunk: {
+          name: 'CYBERPUNK NEÓN',
+          title: 'Arquitectura digital del futuro inmediato.',
+          desc: 'Resplandores de fotones, energía de alto contraste y estética dark-mode diseñada para proyectos tecnológicos de próxima generación.'
+        },
+        editorial: {
+          name: 'EDITORIAL CLÁSICO',
+          title: 'Nobleza tipográfica y sofisticación artística.',
+          desc: 'El encanto atemporal de las publicaciones de alta gama transferido a la web moderna. Texturas cálidas y detalle riguroso.'
+        },
+        playful: {
+          name: 'PLAYFUL DINÁMICO',
+          title: 'Creatividad vibrante, formas suaves y carisma.',
+          desc: 'Diseño amigable que invita a interactuar. Curvas generosas, paletas pasteles luminosas y microinteracciones encantadoras.'
+        }
+      };
+
+      function applyTheme(themeKey) {
+        if (!themeTexts[themeKey]) return;
+
+        // Actualizar atributo en <html>
+        root.setAttribute('data-theme', themeKey);
+        localStorage.setItem('ak_selected_theme', themeKey);
+
+        // Actualizar chips de selección activa
+        document.querySelectorAll('.theme-chip').forEach(chip => {
+          if (chip.getAttribute('data-set-theme') === themeKey) {
+            chip.classList.add('active');
+          } else {
+            chip.classList.remove('active');
+          }
+        });
+
+        // Actualizar textos demostrativos en el sandbox
+        const data = themeTexts[themeKey];
+        if (currentThemeDisplay) {
+          currentThemeDisplay.textContent = 'Estilo Activo: ' + data.name;
+        }
+        if (heroTitle) {
+          heroTitle.textContent = data.title;
+        }
+        if (heroDesc) {
+          heroDesc.textContent = data.desc;
+        }
+      }
+
+      // Escuchar clics en todos los botones de tema
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-set-theme');
+          applyTheme(selected);
+        });
+      });
+
+      // Restaurar tema previo si existe o usar el inicial
+      const savedTheme = localStorage.getItem('ak_selected_theme') || localStorage.getItem('ms_selected_theme') || 'brutalist';
+      applyTheme(savedTheme);
+    })();
+  </script>
+</body>
+</html>
